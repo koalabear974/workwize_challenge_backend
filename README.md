@@ -1,66 +1,140 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Workwize Challenge [Backend]
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Here is the backend solution to the tech assessment from Workwize.
 
-## About Laravel
+## Requirements
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Here are the main requirements for this project:
+- Models and Migrations:
+    - User (role: supplier or user)
+    - Product (name, description, image, stock, price, supplier_id)
+    - Order (user_id, total_price, status)
+    - OrderItem (order_id, product_id, quantity)
+- Authentication:
+    - Role-based: Supplier, User
+- Routes
+    - Supplier: Register/Login, Admin panel with: CRUD Products, View Orders
+    - User: Register/Login, View Products, Cart Management, Simple Checkout
+- Policies
+    - Role-based access control
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Setup & Instalation
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Backend is based on Laravel with Breeze for a quick Auth setup. https://github.com/Nilanth/laravel-breeze-react?tab=readme-ov-file
+Here is how to install:
+- Clone the repository
+- Run `composer install`
+- Copy .env.example to .env and setup required configuration (notably FRONTEND_URL)
+- For ease of use you can connect to an already set up online database:
+  - Add credentials to .env for the online database (will be provided by mail)
+- For local database:
+  - Setup and connect your database in the .env (mysql or postgre)
+  - Run `php artisan migrate`
+  - Run `php artisan db:seed` to generate basic products and user if needed
+- Run `php artisan serve` to run the server
 
-## Learning Laravel
+### Deploy
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Currently this repo is hosted on DigitalOcean and has an automatic CI whenever pushed to the repo.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Walkthrough to development
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Here you will see what steps I went through to develop this project.
 
-## Laravel Sponsors
+### Research and setup 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. Research & trials of boilerplates & Starter kits
+2. Once a good candidate has been chosen and tested in local I went through online setup.
+3. First I created a online database for ease of use and future online setup
+4. For the backend I first try hosting on Vercel but had some issues ended up hosting on DigitalOcean as PHP instances generaly require a whole LAMP stack.
+5. For the frontend Vercel offer a pretty easy and free hosting for react so I went for that.
+6. Once everything was working while being hosted I went back to local for development
 
-### Premium Partners
+### Structure and Planning
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+1. First I laid down which requirements are needed for backend and frontend by doin that I had a clear view on what models, routes, controller and pages I would need
+2. Created all migrations needed to create and modify tables
+3. Created related seeders
 
-## Contributing
+### Development
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+
+
+TODO: 
+
+# Backend Todo List (Laravel)
+
+1. **Models and Migrations**
+    - Create models for `User`, `Supplier`, `Product`, `Order`, and `OrderItem`.
+    - Create migrations for the above models with necessary fields and relationships.
+
+2. **Authentication**
+    - Ensure existing auth setup distinguishes between suppliers and normal users.
+    - Update `User` model to include a `role` field (supplier or user).
+
+3. **Routes and Controllers**
+    - Supplier Routes
+        - CRUD operations for products.
+        - View orders for their products.
+    - User Routes
+        - View all products.
+        - Add products to cart.
+        - Checkout and create orders.
+        - View order history.
+
+4. **Controllers**
+    - `SupplierController` for managing products.
+    - `UserController` for managing user-specific actions (view products, add to cart, etc.).
+    - `OrderController` for handling checkout and order history.
+
+5. **Policies and Middleware**
+    - Implement policies to ensure only suppliers can manage products and only users can make purchases.
+    - Middleware for route protection based on roles.
+
+6. **Services**
+    - Payment processing service for handling checkouts (stub/mock if short on time).
+
+7. **Notifications**
+    - Notify suppliers when a user buys their product.
+
+# Frontend Todo List (React + Tailwind)
+
+1. **Project Setup**
+    - Ensure Tailwind is integrated with React.
+
+2. **Routing**
+    - Setup routing with React Router for different user flows (supplier and normal user).
+
+3. **Authentication**
+    - Login and registration forms for suppliers and users.
+    - Maintain session state (using context or a state management library like Redux).
+
+4. **Supplier Interface**
+    - Dashboard for suppliers to manage products.
+    - Forms for creating and updating products.
+    - View for listing orders received.
+
+5. **User Interface**
+    - Product listing page.
+    - Product detail page.
+    - Shopping cart page.
+    - Checkout page.
+    - Order history page.
+
+6. **Components**
+    - Reusable components such as `ProductCard`, `OrderList`, `CartItem`, etc.
+    - Navigation component that adjusts based on user role.
+
+7. **State Management**
+    - Manage global state for cart, user session, etc.
+
+8. **API Integration**
+    - Services for API calls to backend
