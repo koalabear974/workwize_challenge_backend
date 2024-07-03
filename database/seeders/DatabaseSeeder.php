@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Product;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -19,7 +20,7 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
         ]);
 
-        User::factory()->create([
+        $supplier = User::factory()->create([
             'name' => 'Supplier User',
             'email' => 'supplier@example.com',
             'role' => 'supplier',
@@ -29,6 +30,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'Normal User',
             'email' => 'user@example.com',
             'role' => 'user',
+        ]);
+
+        // Create products associated with the supplier
+        Product::factory(10)->create([
+            'supplier_id' => $supplier->id,
         ]);
     }
 }
