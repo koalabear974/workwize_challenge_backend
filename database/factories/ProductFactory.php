@@ -19,7 +19,7 @@ class ProductFactory extends Factory
         return [
             'name' => fake()->word(),
             'description' => fake()->sentence(),
-            'image' => fake()->imageUrl(),
+            'image' => '/placeholder.png', // Default
             'stock' => fake()->numberBetween(1, 100),
             'price' => fake()->randomFloat(2, 1, 100),
             'supplier_id' => \App\Models\User::where('role', 'supplier')->inRandomOrder()->first()->id,

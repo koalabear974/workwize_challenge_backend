@@ -52,15 +52,20 @@ Here you will see what steps I went through to develop this project.
 
 ### Structure and Planning
 
-1. First I laid down which requirements are needed for backend and frontend by doin that I had a clear view on what models, routes, controller and pages I would need
+1. First I laid down which requirements are needed for backend and frontend by doing that I had a clear view on what models, routes, controller and pages I would need
 2. Created all migrations needed to create and modify tables
-3. Created related seeders
 
 ### Development
 
-1. Added all models and related factories 
-2. Added Product controller, added tests for it and added an AuthServiceProvider to ensure products are modified by the roles
-2. Added Order Controller and added tests for it 
-3. Updated all the related routes
-4. 
+1. [BE] Added all models, related factories and seeders
+2. [BE] Added Product controller, added tests for it and added an AuthServiceProvider to ensure products are modified by the roles
+2. [BE] Added Order Controller and added tests for it 
+3. [BE] Updated all the related routes
+4. [FE] Updated all auth pages to fit requirements 
+5. [FE] Added Product page for user & supplier
+6. [FE] Added CRUD pages for supplier 
+7. [FE] Added cart system for users and order creation
+8. [BE] Added method to fetch and update order
+9. [FE] Added user and supplier view for their orders 
+10. [FE] Added all admin routes and update all views to fit
 

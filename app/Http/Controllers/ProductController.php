@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ProductController extends Controller
@@ -47,10 +48,19 @@ class ProductController extends Controller
             'image' => 'nullable|string',
             'stock' => 'required|integer',
             'price' => 'required|numeric',
-            'supplier_id' => 'required|exists:users,id',
         ]);
 
-        $product = Product::create($request->all());
+        $user = Auth::user();
+
+        $product = Product::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'image' => $request->image,
+            'stock' => $request->stock,
+            'price' => $request->price,
+            'supplier_id' => $user->id,
+        ]);
+
         return response()->json($product, 201);
     }
 
@@ -69,7 +79,6 @@ class ProductController extends Controller
             'image' => 'nullable|string',
             'stock' => 'sometimes|required|integer',
             'price' => 'sometimes|required|numeric',
-            'supplier_id' => 'sometimes|required|exists:users,id',
         ]);
 
         $product = Product::findOrFail($id);
