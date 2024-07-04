@@ -40,13 +40,14 @@ Currently this repo is hosted on DigitalOcean and has an automatic CI whenever p
 ## Walkthrough to development
 
 Here you will see what steps I went through to develop this project.
+Tech stack: Php, Laravel, Breeze
 
 ### Research and setup 
 
 1. Research & trials of boilerplates & Starter kits
 2. Once a good candidate has been chosen and tested in local I went through online setup.
 3. First I created a online database for ease of use and future online setup
-4. For the backend I first try hosting on Vercel but had some issues ended up hosting on DigitalOcean as PHP instances generaly require a whole LAMP stack.
+4. For the backend I first tried hosting on Vercel but had some issues ended up hosting on DigitalOcean as PHP instances generaly require a whole LAMP stack.
 5. For the frontend Vercel offer a pretty easy and free hosting for react so I went for that.
 6. Once everything was working while being hosted I went back to local for development
 
@@ -69,3 +70,7 @@ Here you will see what steps I went through to develop this project.
 9. [FE] Added user and supplier view for their orders 
 10. [FE] Added all admin routes and update all views to fit
 
+### Things to improve
+- Styling (Loading states, branding etc.)
+- Stock management
+- Find a solution for multiple supplier in one order 

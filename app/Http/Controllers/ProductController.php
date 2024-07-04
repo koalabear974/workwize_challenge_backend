@@ -25,7 +25,7 @@ class ProductController extends Controller
     /**
      * Display the specified product.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -37,7 +37,7 @@ class ProductController extends Controller
     /**
      * Store a newly created product in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -67,8 +67,8 @@ class ProductController extends Controller
     /**
      * Update the specified product in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -90,7 +90,7 @@ class ProductController extends Controller
     /**
      * Remove the specified product from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -108,7 +108,13 @@ class ProductController extends Controller
      */
     public function myProducts(Request $request)
     {
-        $products = Product::where('supplier_id', $request->user()->id)->get();
+        $user = Auth::user();
+        if ($user->role === 'admin') {
+            $products = Product::all();
+        } else {
+            $products = Product::where('supplier_id', $request->user()->id)->get();
+        }
+
         return response()->json($products);
     }
 
